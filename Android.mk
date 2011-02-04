@@ -78,18 +78,19 @@ include $(CLEAR_VARS)
 LOCAL_MODULE:= libpcrecpp
 pcrecppIntermediatesInc := $(call intermediates-dir-for,STATIC_LIBRARIES,libpcrecpp,HOST,)/pcrecpp/include
 
-pcre_generated_header1 := $(pcrecppIntermediatesInc)/pcre_stringpiece.h
-$(pcre_generated_header1): PRIVATE_INPUT_FILE := $(LOCAL_PATH)/pcre_stringpiece.h.android
-$(pcre_generated_header1): PRIVATE_CUSTOM_TOOL = cp -f $(PRIVATE_INPUT_FILE) $@
-$(pcre_generated_header1): $(LOCAL_PATH)/pcre_stringpiece.h.android
+pcre_cpp_generated_header1 := $(pcrecppIntermediatesInc)/pcre_stringpiece.h
+$(pcre_cpp_generated_header1): PRIVATE_INPUT_FILE := $(LOCAL_PATH)/pcre_stringpiece.h.android
+$(pcre_cpp_generated_header1): PRIVATE_CUSTOM_TOOL = cp -f $(PRIVATE_INPUT_FILE) $@
+$(pcre_cpp_generated_header1): $(LOCAL_PATH)/pcre_stringpiece.h.android
 	$(transform-generated-source)
 
-pcre_generated_header2 := $(pcrecppIntermediatesInc)/pcrecpparg.h
-$(pcre_generated_header2): PRIVATE_INPUT_FILE := $(LOCAL_PATH)/pcrecpparg.h.android
-$(pcre_generated_header2): PRIVATE_CUSTOM_TOOL = cp -f $(PRIVATE_INPUT_FILE) $@
-$(pcre_generated_header2): $(LOCAL_PATH)/pcrecpparg.h.android
+pcre_cpp_generated_header2 := $(pcrecppIntermediatesInc)/pcrecpparg.h
+$(pcre_cpp_generated_header2): PRIVATE_INPUT_FILE := $(LOCAL_PATH)/pcrecpparg.h.android
+$(pcre_cpp_generated_header2): PRIVATE_CUSTOM_TOOL = cp -f $(PRIVATE_INPUT_FILE) $@
+$(pcre_cpp_generated_header2): $(LOCAL_PATH)/pcrecpparg.h.android
+$(pcre_cpp_generated_header2): $(pcre_generated_header1)
 	$(transform-generated-source)
-LOCAL_GENERATED_SOURCES += $(pcre_generated_header1) $(pcre_generated_header2)
+LOCAL_GENERATED_SOURCES += $(pcre_cpp_generated_header1) $(pcre_cpp_generated_header2) $(pcre_generated_header1)
 
 LOCAL_C_INCLUDES += $(intermediatesInc)
 LOCAL_C_INCLUDES += $(pcrecppIntermediatesInc)
