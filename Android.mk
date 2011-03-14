@@ -66,7 +66,7 @@ PCRE_SRC_FILES := \
 # For the host
 # ========================================================
 LOCAL_SRC_FILES := $(PCRE_SRC_FILES)
-LOCAL_PRELINK_MODULE := false
+
 LOCAL_MODULE_TAGS := optional
 LOCAL_CFLAGS += -DHAVE_CONFIG_H
 LOCAL_CFLAGS += -fPIC
@@ -103,7 +103,7 @@ PCRE_CPP_SRC_FILES := \
         pcre_stringpiece.cc
 
 LOCAL_SRC_FILES := $(PCRE_CPP_SRC_FILES)
-LOCAL_PRELINK_MODULE := false
+
 LOCAL_MODULE_TAGS := optional
 LOCAL_CFLAGS += -fPIC
 include $(BUILD_HOST_STATIC_LIBRARY)
